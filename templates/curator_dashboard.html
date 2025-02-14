@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curator Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/curator.css') }}">
+</head>
+<body>
+
+    <div class="dashboard-container">
+        <div class="header">
+            <h1>Welcome to the Curator Dashboard</h1>
+        </div>
+
+        <div class="bio">
+            <h2>Curator Bio</h2>
+            <p>Username: {{ current_user.username }}</p>
+            <p>Email: {{ current_user.email }}</p>
+        </div>
+
+        <div class="functions">
+            <div class="function-box">
+                <a href="{{ url_for('schedule_auction') }}">Schedule Auction</a>
+            </div>
+            <div class="function-box">
+                <a href="{{ url_for('organize_auction') }}">Organize Auction</a>
+            </div>
+            <div class="function-box">
+                <a href="{{ url_for('notify_artist') }}">Notify Artist about Auction</a>
+            </div>
+            <div class="function-box">
+                <a href="{{ url_for('approve_artwork') }}">Approve Artwork for Auction</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Approve Artwork</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Approve Artworks</h1>
+            <p>Approve artworks for the upcoming auction.</p>
+        </header>
+
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            <div class="artwork-list">
+                {% if artworks %}
+                    {% for artwork in artworks %}
+                        <div class="artwork-item">
+                            <input type="checkbox" name="artworks" value="{{ artwork.artwork_id }}" id="artwork-{{ artwork.artwork_id }}">
+                            <label for="artwork-{{ artwork.artwork_id }}">
+                                <div class="artwork-details">
+                                    <h3>{{ artwork.artwork_title }}</h3>
+                                    <p>Status: <strong>{{ artwork.status }}</strong></p>
+                                </div>
+                            </label>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p>No artworks available for approval.</p>
+                {% endif %}
+            </div>
+            <button type="submit" class="submit-btn">Approve Selected Artworks</button>
+        </form>
+    </div>
+</body>
+</html>

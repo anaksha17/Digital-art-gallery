@@ -1,0 +1,77 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+/* Dashboard Container */
+.dashboard-container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Header */
+.header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.header h1 {
+    font-size: 2em;
+    color: #333;
+}
+
+/* Bio Section */
+.bio {
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
+
+.bio h2 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+}
+
+.bio p {
+    font-size: 1em;
+    color: #555;
+}
+
+/* Functionality Boxes */
+.functions {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px; /* Adjust gap between boxes */
+}
+
+.function-box {
+    flex: 1; /* Make boxes flexible to occupy available space */
+    padding: 20px;
+    background-color: black;
+    color: white;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
+}
+
+.function-box:hover {
+    background-color: brown;
+}
+
+.function-box a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2em;
+}
+
+.function-box a:hover {
+    text-decoration: underline;
+}

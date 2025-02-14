@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    
+    
+</head>
+<body>
+
+<!-- Notification Bell Icon -->
+<div class="notification-bell">
+    <a href="{{ url_for('view_notifications') }}">
+        <i class="fas fa-bell"></i>
+        <span class="notification-count">
+            {% if notifications %}
+                {{ notifications|length }}
+            {% else %}
+                0
+            {% endif %}
+        </span>
+    </a>
+</div>
+
+<!-- List of Notifications -->
+<div class="notifications-container">
+    <h3>Your Notifications</h3>
+    {% if notifications %}
+        <ul>
+        {% for notification in notifications %}
+            <li>
+                <div>
+                    <strong>Message:</strong> {{ notification.message }}<br>
+                    <small>Received on: {{ notification.notification_date }}</small>
+                </div>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No notifications available.</p>
+    {% endif %}
+</div>
+
+</body>
+</html>

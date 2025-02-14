@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule Auction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<h2>Schedule Auction</h2>
+
+<form method="POST">
+    <h3>Select Artworks (Max 3)</h3>
+    <div class="artwork-container">
+        {% for artwork in artworks %}
+        <div class="artwork-item">
+            <input type="checkbox" name="artworks" value="{{ artwork.id }}" id="artwork{{ artwork.id }}">
+            <label for="artwork{{ artwork.id }}">{{ artwork.title }} by {{ artwork.artist }}</label>
+            <img src="{{ artwork.image }}" alt="{{ artwork.title }}" class="artwork-image">
+        </div>
+        {% endfor %}
+    </div>
+
+    <button type="submit" class="btn">Schedule Auction</button>
+</form>
+
+</body>
+</html>

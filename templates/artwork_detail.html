@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}{{ artwork.title }} - ArtSphere{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="artwork-detail">
+        <h2>{{ artwork.title }}</h2>
+        <img src="{{ artwork.image_url }}" alt="{{ artwork.title }}" class="artwork-image-large">
+        <p><strong>Description:</strong> {{ artwork.description }}</p>
+        <p><strong>Artist:</strong> {{ artwork.artist_name }}</p>
+        <p><strong>Biography:</strong> {{ artwork.artist_bio }}</p>
+        <p><strong>Creation Date:</strong> {{ artwork.creation_date }}</p>
+        <p><strong>Price:</strong> ${{ artwork.price }}</p>
+
+        {% if artwork.auction_status == 'active' %}
+            <p><strong>Currently in Auction:</strong> Yes</p>
+            <p><strong>Auction Start Date:</strong> {{ artwork.start_date }}</p>
+            <p><strong>Auction End Date:</strong> {{ artwork.end_date }}</p>
+            <p><strong>Current Highest Bid:</strong> ${{ artwork.current_highest_bid }}</p>
+            <p class="text-warning">This artwork is currently in auction and cannot be purchased.</p>
+        {% else %}
+            <p><strong>Currently in Auction:</strong> No</p>
+            {% if user_logged_in %}
+                <form method="POST" action="{{ url_for('purchase_artwork', artwork_id=artwork.artwork_id) }}">
+                    <button type="submit" class="btn btn-primary">Purchase</button>
+                </form>
+            {% else %}
+                <p>Please <a href="{{ url_for('login') }}">log in</a> to purchase this artwork.</p>
+            {% endif %}
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

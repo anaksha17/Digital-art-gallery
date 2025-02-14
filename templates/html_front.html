@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}Home - ArtSphere{% endblock %}
+
+{% block content %}
+  <!-- Video Section -->
+  <section class="video-section">
+    <video autoplay muted loop class="background-video">
+      <source src="{{ url_for('static', filename='images/front.mp4') }}" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    
+    <div class="overlay-text">
+      <h1>ArtSphere</h1>
+      <p>"Every canvas is a journey into the artist's imagination."</p>
+    </div>
+  </section>
+<br>
+<br>
+<br>
+<br><br><br><br><br><br>
+  <div class="container">
+    <h2 class="section-title">Newly Added Artworks</h2>
+    <br><br>
+    <div class="art-container">
+        {% for art in artworks %}
+        <div class="art-card">
+            {% if art.image_url.endswith('.mp4') %}
+            <video class="art-video" autoplay loop muted>
+                <source src="{{ art.image_url }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            {% else %}
+            <img src="{{ art.image_url }}" alt="{{ art.title }}" class="art-image">
+            {% endif %}
+            <h3>{{ art.title }}</h3>
+            <p>{{ art.description }}</p>
+        </div>
+        {% endfor %}
+    </div>
+  </div>
+<br><br><br><br>
+  <div class="view-all-button">
+    <a href="/artwork">View All Artworks</a>
+  </div>
+  <br><br><br><br>
+{% endblock %}
+
+  {% block extra_css %}
+      <link rel="stylesheet" href="/static/css/CSS_front.css">  <!-- Link to the front page's specific CSS -->
+  {% endblock %}

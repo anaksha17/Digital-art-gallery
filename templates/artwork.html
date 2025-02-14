@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}Home - ArtSphere{% endblock %}
+
+{% block content %}
+    
+    
+
+
+<div class="container">
+    <br><br><br><br><br><br>
+    <h2 class="section-title">Artworks</h2>
+    <br><br>
+    <div class="art-container">
+        {% for art in artworks %}
+        <div class="art-card">
+            {% if session['user_id'] %}
+            <!-- Check if user is logged in, then direct to artwork details -->
+            <a href="{{ url_for('/artwork_detail', artwork_id=art.artwork_id) }}">
+            {% else %}
+            <!-- If not logged in, redirect to login page -->
+            <a href="{{ url_for('login') }}">
+            {% endif %}
+                {% if art.image_url.endswith('.mp4') %}
+                <video class="art-video" autoplay loop muted>
+                    <source src="{{ art.image_url }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                {% else %}
+                <img src="{{ art.image_url }}" alt="{{ art.title }}" class="art-image">
+                {% endif %}
+                <h3>{{ art.title }}</h3>
+            </a>
+            <p>{{ art.description }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="/static/css/artwork.css">
+{% endblock %}

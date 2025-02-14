@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notify Artist</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<h2>Select Approved Artworks to Notify Artists</h2>
+
+<form method="POST">
+    <div class="artworks-list">
+        {% for artwork in artworks %}
+            <div class="artwork-item">
+                <input type="checkbox" name="artworks" value="{{ artwork.id }}">
+                <label>{{ artwork.title }}</label>
+            </div>
+        {% endfor %}
+    </div>
+
+    <button type="submit" class="btn btn-primary">Send Notification</button>
+</form>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div class="alert">
+            {% for category, message in messages %}
+                <p class="alert-{{ category }}">{{ message }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Art Gallery - Sign Up</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Digital Art Gallery</h1>
+        </header>
+
+        <!-- Display Flash Messages -->
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="flash-messages">
+                    <ul>
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <main>
+            <h2>Create an account</h2>
+            <form method="POST">
+                <!-- User Type Dropdown -->
+                <label for="user_type">Sign up as:</label>
+                <select name="user_type" id="user_type" class="form-input" required>
+                    <option value="curator">Curator</option>
+                    <option value="admin">Admin</option>
+                    <option value="customer">Customer</option>
+                    <option value="artist">Artist</option>
+                </select><br><br>
+
+                <!-- Name -->
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" class="form-input" placeholder="Enter your name" required><br><br>
+
+                <!-- Email -->
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" class="form-input" placeholder="Enter your email" required><br><br>
+
+                <!-- Password -->
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" class="form-input" placeholder="Create a password" required><br><br>
+
+                <!-- Submit Button -->
+                <button type="submit" class="signup-button">Sign Up</button>
+            </form>
+
+            <p class="login-link">Already have an account? <a href="{{ url_for('login') }}">Log in</a></p>
+        </main>
+    </div>
+</body>
+</html>

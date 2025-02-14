@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Art Gallery - Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Digital Art Gallery</h1>
+        </header>
+        
+        <!-- Display Flash Messages -->
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="flash-messages">
+                    <ul>
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <main>
+            <h2>Log in to your account</h2>
+            <form action="{{ url_for('login') }}" method="POST">
+                <!-- User Type Dropdown -->
+                <label for="user_type">Login as:</label>
+                <select name="user_type" id="user_type" class="form-input" required>
+                    <option value="curator">Curator</option>
+                    <option value="admin">Admin</option>
+                    <option value="customer">Customer</option>
+                    <option value="artist">Artist</option>
+                </select><br><br>
+
+                <!-- Username -->
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" class="form-input" placeholder="Enter your username" required><br><br>
+
+                <!-- Password with toggle -->
+                <label for="password">Password</label>
+                <div class="password-container">
+                    <input type="password" id="password" name="password" class="form-input" placeholder="Enter your password" required>
+                    <span class="eye-icon" onclick="togglePasswordVisibility()">
+                        👁️
+                    </span>
+                </div><br><br>
+
+                <!-- Submit Button -->
+                <button type="submit" class="login-button">Login</button>
+            </form>
+            
+            <p class="signup-link">Don't have an account? <a href="{{ url_for('signup') }}">Sign up</a></p>
+        </main>
+    </div>
+
+    <script>
+        function togglePasswordVisibility() {
+            const passwordField = document.getElementById("password");
+            const eyeIcon = document.querySelector(".eye-icon");
+            
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                eyeIcon.textContent = "👁️"; // Change icon to indicate password is visible
+            } else {
+                passwordField.type = "password";
+                eyeIcon.textContent = "👁️"; // Change icon back to original
+            }
+        }
+    </script>
+</body>
+</html>
